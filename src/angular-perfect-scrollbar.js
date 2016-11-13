@@ -1,5 +1,3 @@
-var Ps = require('perfect-scrollbar');
-
 angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
   ['$parse', '$window', function($parse, $window) {
 
