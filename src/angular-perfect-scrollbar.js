@@ -37,8 +37,8 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
               onScrollHandler($scope, {
                 scrollTop: scrollTop,
                 scrollHeight: scrollHeight
-              })
-            })
+              });
+            });
           });
         });
 
@@ -54,7 +54,7 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
         }
 
         // This is necessary when you don't watch anything with the scrollbar
-        $elem.bind('mouseenter', function() {update('mouseenter')});
+        $elem.bind('mouseenter', function() {update('mouseenter');});
 
         // Update perfect-scroll when content dimensions change
         var scrollHeight, scrollWidth; // Used to detect scroll content dimension changes.
