@@ -56,6 +56,21 @@ angular.module('perfect_scrollbar', []).directive('perfectScrollbar',
         // This is necessary when you don't watch anything with the scrollbar
         $elem.bind('mouseenter', function() {update('mouseenter')});
 
+        // Update perfect-scroll when content dimensions change
+        var scrollHeight, scrollWidth; // Used to detect scroll content dimension changes.
+        $scope.$watch(function () {
+          setTimeout(function () {
+            var newScrollHeight = $elem.children("[ng-transclude]")[0].scrollHeight;
+            var newScrollWidth = $elem.children("[ng-transclude]")[0].scrollWidth;
+
+            if (newScrollHeight != scrollHeight || newScrollWidth != scrollWidth) {
+              Ps.update(el);
+              scrollHeight = newScrollHeight;
+              scrollWidth = newScrollWidth;
+            }
+          }, 100);
+        });
+
         // Possible future improvement - check the type here and use the appropriate watch for non-arrays
         if ($attr.refreshOnChange) {
           $scope.$watchCollection($attr.refreshOnChange, function() {
